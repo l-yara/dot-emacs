@@ -172,14 +172,14 @@
              define-word          ; display the definition of word at point
              diminish             ; Diminished modes from modeline
              drag-stuff           ; Drag stuff around in Emacs
-             erlang               ; Erlang major mode
+;;             erlang               ; Erlang major mode
              expand-region        ; Increase selected region by semantic units
              focus                ; Dim color of text in surrounding sections
              idle-require         ; load elisp libraries while Emacs is idle
              geiser               ; GNU Emacs and Scheme talk to each other
              git-gutter-fringe    ; Fringe version of git-gutter.el
              golden-ratio         ; Automatic resizing windows to golden ratio
-             haskell-mode         ; A Haskell editing mode
+;;             haskell-mode         ; A Haskell editing mode
              helm                 ; Incremental and narrowing framework
              helm-ag              ; the silver searcher with helm interface
              helm-company         ; Helm interface for company-mode
@@ -192,7 +192,7 @@
              markdown-mode        ; Emacs Major mode for Markdown-formatted files
              material-theme       ; A Theme based on Google Material Design
              matlab-mode          ; MATLAB integration with Emacs
-             maude-mode           ; Emacs mode for the programming language Maude
+;;             maude-mode           ; Emacs mode for the programming language Maude
              multiple-cursors     ; Multiple cursors for Emacs
              olivetti             ; Minor mode for a nice writing environment
              org                  ; Outline-based notes management and organizer
@@ -226,10 +226,12 @@
    #+BEGIN_SRC emacs-lisp
    (when (memq window-system '(mac ns))
      (setq ns-pop-up-frames nil
-           mac-option-modifier nil
-           mac-command-modifier 'meta
-           x-select-enable-clipboard t)
+;;          mac-option-modifier nil
+;;          mac-command-modifier 'meta
+            ns-function-modifier 'super
+            select-enable-clipboard t)
      (exec-path-from-shell-initialize)
+     (set-keyboard-coding-system nil)
      (when (fboundp 'mac-auto-operator-composition-mode)
        (mac-auto-operator-composition-mode 1)))'
    #+END_SRC
@@ -289,7 +291,7 @@
    #+BEGIN_SRC emacs-lisp
    (setq-default fill-column 79                    ; Maximum line width
                  truncate-lines t                  ; Don't fold lines
-                 indent-tabs-mode nil              ; Use spaces instead of tabs
+;                 indent-tabs-mode nil              ; Use spaces instead of tabs
                  split-width-threshold 160         ; Split verticly by default
                  split-height-threshold nil        ; Split verticly by default
                  auto-fill-function 'do-auto-fill) ; Auto-fill-mode everywhere
@@ -711,7 +713,7 @@
    (defadvice turn-on-flyspell (before check nil activate)
      "Turns on flyspell only if a spell-checking tool is installed."
      (when (executable-find ispell-program-name)
-       (local-set-key (kbd "C-c l") (cycle-languages))))
+       (local-se t-key (kbd "C-c l") (cycle-languages))))
    #+END_SRC
 
    #+BEGIN_SRC emacs-lisp
